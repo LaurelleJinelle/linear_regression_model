@@ -25,7 +25,6 @@ class _InputScreenState extends State<InputScreen> {
         marketSize: _formData.marketSize,
         funding: _formData.funding,
         teamExperience: _formData.teamExperience,
-        hasPatent: _formData.hasPatent,
         industry: _formData.industry,
       );
 
@@ -91,33 +90,6 @@ class _InputScreenState extends State<InputScreen> {
     );
   }
 
-  
-  Widget _buildSwitch() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        children: [
-          const Icon(Icons.shield, color: Colors.grey),
-          const SizedBox(width: 16),
-          const Text('Has a Patent?'),
-          const Spacer(),
-          Switch(
-            value: _formData.hasPatent,
-            onChanged: (bool value) {
-              setState(() {
-                _formData.hasPatent = value;
-              });
-            },
-            activeColor: Theme.of(context).colorScheme.primary,
-          ),
-        ],
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +145,6 @@ class _InputScreenState extends State<InputScreen> {
                 const SizedBox(height: 20),
                 _buildDropdown(),
                 const SizedBox(height: 20),
-                _buildSwitch(),
                 const SizedBox(height: 40),
 
                 // Predict Button
