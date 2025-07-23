@@ -24,7 +24,6 @@ class ResultScreen extends StatelessWidget {
             _buildSummaryRow('Funding:', '\$${formData.funding.toStringAsFixed(0)}'),
             _buildSummaryRow('Team Experience:', '${formData.teamExperience} yrs'),
             _buildSummaryRow('Industry:', formData.industry),
-            _buildSummaryRow('Has Patent:', formData.hasPatent ? 'Yes' : 'No'),
           ],
         ),
       ),
