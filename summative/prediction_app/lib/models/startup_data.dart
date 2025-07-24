@@ -1,4 +1,3 @@
-// lib/models/startup_data.dart
 class StartupData {
   int relationships;
   int has_roundB;
@@ -9,16 +8,15 @@ class StartupData {
   int funding_total_usd;
 
   StartupData({
-    this.relationships = 10,
+    this.relationships = 0,
     this.has_roundB = 0,
-    this.funding_rounds = 1,
+    this.funding_rounds = 0,
     this.has_roundA = 0,
     this.has_roundC = 0,
     this.has_roundD = 0,
-    this.funding_total_usd = 500000,
+    this.funding_total_usd = 0,
   });
 
-  // Add this method to convert the object to JSON
   Map<String, dynamic> toJson() => {
     'relationships': relationships,
     'has_roundB': has_roundB,

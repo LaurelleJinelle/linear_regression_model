@@ -18,11 +18,9 @@ class StartupPredictorApp extends StatelessWidget {
         colorScheme: const ColorScheme.dark(
           primary: Color(0xFF4F46E5),
           secondary: Color(0xFF6366F1),
-          background: Color(0xFF111827),
           surface: Color(0xFF1F2937),
           onPrimary: Colors.white,
           onSecondary: Colors.white,
-          onBackground: Colors.white,
           onSurface: Colors.white,
         ),
       ),
