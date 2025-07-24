@@ -7,7 +7,7 @@ class ResultScreen extends StatelessWidget {
   final String prediction;
   final StartupData formData;
 
-  const ResultScreen({super.key, required this.prediction, required this.formData});
+  const ResultScreen({super.key, required this.prediction, required this.formData, required Map<String, dynamic> predictionResult});
 
   Widget _buildSummaryCard(BuildContext context) {
     return Card(

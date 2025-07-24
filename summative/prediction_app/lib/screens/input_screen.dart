@@ -13,31 +13,40 @@ class InputScreen extends StatefulWidget {
 }
 
 class _InputScreenState extends State<InputScreen> {
-  final _formKey = GlobalKey<FormState>();
-  final _formData = StartupData();
-  final List<String> _industries = ['Tech', 'Healthcare', 'Finance', 'E-commerce', 'Education', 'Entertainment'];
+bool _isLoading = false; // Add a loading state variable
 
-  void _handlePredict() {
-    if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save();
-      
-      final predictionResult = PredictionService.getPrediction(
-        marketSize: _formData.marketSize,
-        funding: _formData.funding,
-        teamExperience: _formData.teamExperience,
-        industry: _formData.industry,
-      );
+void _handlePredict() async {
+  if (_formKey.currentState!.validate()) {
+    _formKey.currentState!.save();
 
+    setState(() {
+      _isLoading = true; // Show loading indicator
+    });
+
+    try {
+      final predictionResult = await PredictionService.getPrediction(_formData);
+
+      // The result now is a Map, e.g., {"predicted_status": 1, "raw_score": 0.85}
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => ResultScreen(
-            prediction: predictionResult,
+            predictionResult: predictionResult,
             formData: _formData,
           ),
         ),
       );
+    } catch (e) {
+      // Show an error message to the user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.toString())),
+      );
+    } finally {
+      setState(() {
+        _isLoading = false; // Hide loading indicator
+      });
     }
   }
+}
 
 
   TextFormField _buildTextFormField({required String label, required IconData icon, required String initialValue, required FormFieldSetter<String> onSaved}) {

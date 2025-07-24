@@ -3,6 +3,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import joblib
 import numpy as np
+import os
+
+import uvicorn
 
 # Load pipeline
 pipeline = joblib.load("./decision_tree_pipeline.pkl")
@@ -50,3 +53,7 @@ def predict_status(features: StartupFeatures):
         "predicted_status": predicted_class,
         "raw_score": round(raw_prediction, 3)
     }
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    uvicorn.run("predict:app", host="0.0.0.0", port=port, reload=True)
